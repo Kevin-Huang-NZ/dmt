@@ -1,0 +1,55 @@
+package mahara.common.dic;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+
+import mahara.common.dic.Option;
+import mahara.common.dic.SelectOption;
+
+public enum CommentCheckStatus {
+	WAITING("0", "待审核"), SUCCESS("1", "审核通过"), FAILURE("2", "审核不通过");
+
+	private final String value;
+	private final String name;
+	private static Iterable<Option> options = new ArrayList<Option>();
+	static {
+		List<Option> tempOptions = new ArrayList<Option>();
+		for (CommentCheckStatus one : CommentCheckStatus.values()) {
+			Option option = new SelectOption(one.getValue(), one.getName());
+			tempOptions.add(option);
+		}
+		CommentCheckStatus.options = tempOptions;
+	}
+
+	CommentCheckStatus(String value, String name) {
+		this.value = value;
+		this.name = name;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public static Iterable<Option> getOptions() {
+		return CommentCheckStatus.options;
+	}
+
+	@JsonCreator
+	public static CommentCheckStatus create(String value) {
+		if (value == null) {
+			throw new IllegalArgumentException();
+		}
+		for (CommentCheckStatus v : values()) {
+			if (value.equals(v.getValue())) {
+				return v;
+			}
+		}
+		throw new IllegalArgumentException();
+	}
+}
