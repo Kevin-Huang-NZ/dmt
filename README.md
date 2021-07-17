@@ -14,6 +14,5 @@
 
 1. 定义数据库表结构
 2. 使用mybatis.generator生成Model、Mapper、Mapping XML
-3. 使用自定义的工具生成：Service、ServiceImpl、Controller，前端的页面、api接口，还有权限相关的SQL。
-   自定义工具读取Mapper目录的文件名，获得需要生成代码列表。字段定义读取的是information_schema表。
+3. 使用自定义的工具生成：Service、ServiceImpl、Controller，前端的页面、api接口，还有权限相关的SQL。自定义工具读取Mapper目录的文件名，获得需要生成代码列表。字段定义读取的是information_schema表。
 
