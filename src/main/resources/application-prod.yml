@@ -1,0 +1,56 @@
+server:
+  port: 9090
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    name: dmt
+    url: jdbc:mysql://localhost:3306/dmt?useUnicode=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: dmtuser
+    password: Dmt1218-
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 50MB
+  cache:
+    type: redis
+    redis:
+      time-to-live: 600000 #缓存超时时间ms
+      cache-null-values: false #是否缓存空值
+  redis:
+    host: localhost
+    database: 4
+    port: 6379
+    password: 
+    timeout: 10000
+    jedis:
+      pool:
+        min-idle: 0
+        max-active: 10
+        max-idle: 10
+        max-wait: 200
+        
+file-upload:  location: D:\\dmt\\UploadFiles\\
+
+jwt:
+  secret: a1g2y47dg3dj59fjhhsd7cnewy73j
+  expiration: 28800
+  tokenheader: x-auth-token
+
+# generator(dev only)
+generator:
+  onOff: 0 # 0-off;1-on
+  baseFolder: C:/work/sts/dmt/
+  templateFolder: generator/templates
+  outputFolder: generator/output
+  javaSourceFolder: src/main/java/
+  mapperPkg: com.cit.dmt.core.dao
+  modelPkg: com.cit.dmt.core.model
+  servicePkg: com.cit.dmt.core.service
+  serviceImplPkg: com.cit.dmt.core.service.impl
+  controllerPkg: com.cit.dmt.web.controller
+  dbUrl: jdbc:mysql://localhost:3306/information_schema?useUnicode=true&useSSL=false&allowPublicKeyRetrieval=true
+  dbRootPassword: 123456
+  tableSchema: dmt
+  
